@@ -8,9 +8,6 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootTest
-@ComponentScans({ @ComponentScan("vpwelltok.loans.controller") })
-@EnableJpaRepositories("vpwelltok.loans.repository")
-@EntityScan("vpwelltok.loans.model")
 class LoansApplicationTests {
 
 	@Test
