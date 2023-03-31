@@ -6,10 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import vpwelltok.loans.config.LoansServiceConfig;
 import vpwelltok.loans.model.Properties;
 import vpwelltok.loans.model.Customer;
@@ -27,7 +24,7 @@ public class LoansController {
     LoansServiceConfig loansConfig;
 
     @PostMapping("/myLoans")
-    public List<Loans> getLoansDetails(@RequestBody Customer customer) {
+    public List<Loans> getLoansDetails(@RequestHeader("vpwelltok-correlation-id") String correlationid, @RequestBody Customer customer) {
         List<Loans> loans = loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
         if (loans != null) {
             return loans;
